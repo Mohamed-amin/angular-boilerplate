@@ -8,7 +8,7 @@ describe('homeCtrl', function() {
                 $controller('homeCtrl', {
                     $scope: $rootScope.$new()
                 });
-            }).to.not.throw();
+            }).not.toThrow();
         });
     });
 });
