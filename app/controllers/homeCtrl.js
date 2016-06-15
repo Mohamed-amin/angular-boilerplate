@@ -7,7 +7,8 @@ angular.module('myApp').controller('HomeCtrl', function($scope, Api) {
         $scope.UIError = 'An error occurred';
         if (err) throw err;
     }
-    console.log(Api.getProperties())
+
     $scope.properties = Api.getProperties() || [];
     $scope.savedProperties = Api.getSavedProperties() || [];
+
 });
