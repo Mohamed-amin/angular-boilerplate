@@ -5,9 +5,9 @@ describe('homeCtrl', function() {
     beforeEach(function() {
         module('myApp')
         inject(function($controller, $rootScope) {
-            let scope = $rootScope.$new();
-            let rootScope = $rootScope;
-            let controller = $controller('HomeCtrl', {
+            var scope = $rootScope.$new();
+            var rootScope = $rootScope;
+            var controller = $controller('HomeCtrl', {
                 $scope: scope,
             });
         });
@@ -24,7 +24,7 @@ describe('homeCtrl', function() {
 
     it('Saves a Property', function() {
         inject(function() {
-            expect(scope.saveProperty).to.exist;
+            expect($scope.saveProperty).to.exist;
             scope.saveProperty('1');
             expect(scope.savedProperties['1']).toBeDefined();
             expect(scope.properties['1']).not.toBeDefined();

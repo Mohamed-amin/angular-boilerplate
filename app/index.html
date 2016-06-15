@@ -23,10 +23,12 @@
             <img ng-src="{{property.mainImage}}">
             <strong class="price">{{property.price}}</strong>
             <img ng-src="{{property.agency.logo}}">
-            <a href="#"> Save Property</a>
+            <a href="#" ng-click="propertyAction({action:'SAVE', id:property.id})"> Save Property</a>
         </li>
      </ul>
     </div>
+
+    <script src="bower_components/lodash/lodash.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="app.js"></script>
     <script src="./controllers/homeCtrl.js"></script>
