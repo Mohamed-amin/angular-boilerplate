@@ -2,6 +2,7 @@
 
 describe('homeCtrl', function() {
     beforeEach(module('myApp'));
+    
     it('exists', function(){
         inject(function($controller, $rootScope){
             expect(function(){
@@ -11,4 +12,5 @@ describe('homeCtrl', function() {
             }).not.toThrow();
         });
     });
+    
 });

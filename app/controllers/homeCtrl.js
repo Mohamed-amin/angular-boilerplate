@@ -2,12 +2,12 @@
 /**
  * Widget Controller is the main Controller
  */
-angular.module('myApp').controller('homeCtrl', function($rootScope, $scope) {
-    console.log('hi')
+angular.module('myApp').controller('HomeCtrl', function($scope, Api) {
     function error(err) {
         $scope.UIError = 'An error occurred';
         if (err) throw err;
     }
-    $scope.hi = 'hi amin'
-
+    console.log(Api.getProperties())
+    $scope.properties = Api.getProperties() || [];
+    $scope.savedProperties = Api.getSavedProperties() || [];
 });

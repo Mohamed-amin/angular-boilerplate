@@ -17,12 +17,20 @@
 </head>
 
 <body>
-    <div ng-controller="homeCtrl">
-     {{hi}}
+    <div ng-controller="HomeCtrl">
+     <ul>
+        <li ng-repeat="property in properties">
+            <img ng-src="{{property.mainImage}}">
+            <strong class="price">{{property.price}}</strong>
+            <img ng-src="{{property.agency.logo}}">
+            <a href="#"> Save Property</a>
+        </li>
+     </ul>
     </div>
     <script src="bower_components/angular/angular.js"></script>
     <script src="app.js"></script>
     <script src="./controllers/homeCtrl.js"></script>
+    <script src="./services/api.js"></script>
 </body>
 
 </html>
