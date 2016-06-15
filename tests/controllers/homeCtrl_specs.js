@@ -6,7 +6,7 @@ describe('homeCtrl', function() {
     it('exists', function(){
         inject(function($controller, $rootScope){
             expect(function(){
-                $controller('homeCtrl', {
+                $controller('HomeCtrl', {
                     $scope: $rootScope.$new()
                 });
             }).not.toThrow();
