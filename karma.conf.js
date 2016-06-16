@@ -4,7 +4,9 @@ module.exports = function(config) {
 
     files: [
       'app/bower_components/angular/angular.js',
+      'app/bower_components/angular-animate/angular-animate.min.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
+      'app/bower_components/lodash/lodash.js',
       'app/app.js',
       'app/controllers/*.js',
       'app/services/*.js',

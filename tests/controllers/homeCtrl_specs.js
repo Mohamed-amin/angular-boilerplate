@@ -1,13 +1,14 @@
 'use strict';
 
 describe('homeCtrl', function() {
+    var scope ,controller,rootScope;
     beforeEach(module('myApp'));
     beforeEach(function() {
         module('myApp')
         inject(function($controller, $rootScope) {
-            var scope = $rootScope.$new();
-            var rootScope = $rootScope;
-            var controller = $controller('HomeCtrl', {
+             scope = $rootScope.$new();
+             rootScope = $rootScope;
+             controller = $controller('HomeCtrl', {
                 $scope: scope,
             });
         });
@@ -24,18 +25,25 @@ describe('homeCtrl', function() {
 
     it('Saves a Property', function() {
         inject(function() {
-            expect($scope.saveProperty).to.exist;
-            scope.saveProperty('1');
+            expect(scope.propertyAction).toEqual(jasmine.anything());
+
+            scope.propertyAction({action:'SAVE', id:2});
+            console.log(scope.savedProperties)
+            expect(scope.savedProperties.filter((p)=>{
+                return p.id == '1'
+            })).toEqual([]);
             expect(scope.savedProperties['1']).toBeDefined();
-            expect(scope.properties['1']).not.toBeDefined();
+            
         });
     });
 
     it('unSaves a Property', function() {
         inject(function() {
-            expect(scope.unSaveProperty).to.exist;
-            scope.unSaveProperty('1');
-            expect(scope.savedProperties['1']).not.toBeDefined();
+            expect(scope.propertyAction).toEqual(jasmine.anything());
+            scope.propertyAction({action:'UN-SAVE', id:4});
+            expect(scope.savedProperties.filter((p)=>{
+                return p.id == '4'
+            })).toEqual([]);
             expect(scope.properties['1']).toBeDefined();
         });
     });

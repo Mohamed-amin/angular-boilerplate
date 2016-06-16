@@ -3,10 +3,8 @@
  * Widget Controller is the main Controller
  */
 angular.module('myApp').controller('HomeCtrl', function($scope, Api) {
-    function error(err) {
-        $scope.UIError = 'An error occurred';
-        if (err) throw err;
-    }
+    $scope.text = 'hi';
+
     $scope.properties = Api.getProperties() || [];
     $scope.savedProperties = Api.getSavedProperties() || [];
     $scope.propertyAction = (options) => {
