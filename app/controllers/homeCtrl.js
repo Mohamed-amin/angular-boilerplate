@@ -7,19 +7,21 @@ angular.module('myApp').controller('HomeCtrl', function($scope, Api) {
         $scope.UIError = 'An error occurred';
         if (err) throw err;
     }
+    $scope.properties = Api.getProperties() || [];
+    $scope.savedProperties = Api.getSavedProperties() || [];
     $scope.propertyAction = (options) => {
         options = options || {};
         let isSaving = options.action === 'SAVE';
         let source = isSaving ? 'properties' : 'savedProperties';
         let target = isSaving ? 'savedProperties' : 'properties';
+        let property = _.find($scope[source], { id: options.id });
 
-        let property = _.find($scope[source], options.id);
-        $scope[target][options.id] = property;
-        delete $scope[source][options.id]
+        $scope[target].push(property);
+        $scope[source] = _.filter($scope[source], (p)=>{
+        	return p.id !== options.id;
+        })
     }
 
-    $scope.properties = Api.getProperties() || [];
-    $scope.savedProperties = Api.getSavedProperties() || [];
 
 
 });

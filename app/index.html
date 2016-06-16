@@ -18,18 +18,29 @@
 
 <body>
     <div ng-controller="HomeCtrl">
-     <ul>
-        <li ng-repeat="property in properties">
-            <img ng-src="{{property.mainImage}}">
-            <strong class="price">{{property.price}}</strong>
-            <img ng-src="{{property.agency.logo}}">
-            <a href="#" ng-click="propertyAction({action:'SAVE', id:property.id})"> Save Property</a>
+     <ul class="list results">
+        <h2>Results</h2>
+        <li ng-repeat="p in properties | orderBy: 'id'">
+            <strong class="price">{{p.price}}</strong>
+            <img ng-src="{{p.mainImage}}">
+            <img ng-src="{{p.agency.logo}}">
+            <a href="#" class="btn" ng-click="propertyAction({action:'SAVE', id:p.id})"> Save </a>
+        </li>
+     </ul>
+     <ul class="list saved">
+        <h2>Saved Properties</h2>
+        <li ng-repeat="p in savedProperties | orderBy: 'p.id'"  class="animate-repeat">
+            <strong class="price">{{p.price}}</strong>
+            <img ng-src="{{p.mainImage}}">
+            <img ng-src="{{p.agency.logo}}">
+            <a href="#"  class="btn" ng-click="propertyAction({action:'UN-SAVE', id:p.id})"> remove </a>
         </li>
      </ul>
     </div>
 
     <script src="bower_components/lodash/lodash.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="app.js"></script>
     <script src="./controllers/homeCtrl.js"></script>
     <script src="./services/api.js"></script>
