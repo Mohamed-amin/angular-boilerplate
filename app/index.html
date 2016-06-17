@@ -17,24 +17,26 @@
 </head>
 
 <body>
-    <div ng-controller="HomeCtrl">
+    <div ng-controller="HomeCtrl" class="wrapper">
      <ul class="list results">
         <h2>Results</h2>
-        <li ng-repeat="p in properties | orderBy: 'id'">
+        <li ng-repeat="p in properties | orderBy: 'id'" class="animate-repeat property">
             <strong class="price">{{p.price}}</strong>
             <img ng-src="{{p.mainImage}}">
             <img ng-src="{{p.agency.logo}}">
             <a href="#" class="btn" ng-click="propertyAction({action:'SAVE', id:p.id})"> Save </a>
         </li>
+        <li ng-if="properties.length == 0 " class="no-results"> No properties left</li>
      </ul>
      <ul class="list saved">
         <h2>Saved Properties</h2>
-        <li ng-repeat="p in savedProperties | orderBy: 'id'"  class="animate-repeat">
+        <li ng-repeat="p in savedProperties | orderBy: 'id'"  class="animate-repeat property">
             <strong class="price">{{p.price}}</strong>
             <img ng-src="{{p.mainImage}}">
             <img ng-src="{{p.agency.logo}}">
             <a href="#"  class="btn" ng-click="propertyAction({action:'REMOVE', id:p.id})"> remove </a>
         </li>
+        <li ng-if="savedProperties.length == 0 " class="no-results"> No Saved Properties</li>
      </ul>
     </div>
 
