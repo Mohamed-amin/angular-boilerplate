@@ -29,7 +29,7 @@
      </ul>
      <ul class="list saved">
         <h2>Saved Properties</h2>
-        <li ng-repeat="p in savedProperties | orderBy: 'p.id'"  class="animate-repeat">
+        <li ng-repeat="p in savedProperties | orderBy: 'id'"  class="animate-repeat">
             <strong class="price">{{p.price}}</strong>
             <img ng-src="{{p.mainImage}}">
             <img ng-src="{{p.agency.logo}}">

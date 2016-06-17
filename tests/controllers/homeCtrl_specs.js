@@ -48,6 +48,4 @@ describe('homeCtrl', function() {
             }).length > 0).toBe(true);
         });
     });
-
-
 });

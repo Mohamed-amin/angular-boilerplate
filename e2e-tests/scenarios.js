@@ -4,38 +4,32 @@
 
 describe('my app', function() {
 
-
-  it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
-    browser.get('index.html');
-    expect(browser.getLocationAbsUrl()).toMatch("/view1");
-  });
-
-
-  describe('view1', function() {
-
-    beforeEach(function() {
-      browser.get('index.html#!/view1');
-    });
-
-
-    it('should render view1 when user navigates to /view1', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 1/);
-    });
-
-  });
-
-
   describe('view2', function() {
 
     beforeEach(function() {
-      browser.get('index.html#!/view2');
+      browser.get('index.html#!');
+    });
+    /**
+     * getting that element text to take it around through tests
+     */
+    var elmFromResults; 
+    var elmFromSaved;
+    
+    it('First element in place ', function() {
+      expect(element.all(by.css('.results li')).first().getText().then((txt)=>{elmFromResults = txt})).
+        toEqual(elmFromResults);
     });
 
+   it('Move the property to saved properties and it should be on top', function() {
+      element.all(by.css('.results li .btn')).first().click()
+      expect(element.all(by.css('.saved li')).first().getText()).
+        toEqual(elmFromResults);
+    });
 
-    it('should render view2 when user navigates to /view2', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 2/);
+   it('Move the property from saved to results wwill be bottom', function() {
+      element.all(by.css('.saved li .btn')).first().click()
+      expect(element.all(by.css('.results li')).last().getText().then((txt)=>{ elmFromSaved = txt})).
+        toEqual(elmFromSaved);
     });
 
   });
