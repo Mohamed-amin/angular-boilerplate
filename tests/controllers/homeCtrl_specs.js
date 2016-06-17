@@ -1,14 +1,14 @@
 'use strict';
 
 describe('homeCtrl', function() {
-    var scope ,controller,rootScope;
+    var scope, controller, rootScope;
     beforeEach(module('myApp'));
     beforeEach(function() {
         module('myApp')
         inject(function($controller, $rootScope) {
-             scope = $rootScope.$new();
-             rootScope = $rootScope;
-             controller = $controller('HomeCtrl', {
+            scope = $rootScope.$new();
+            rootScope = $rootScope;
+            controller = $controller('HomeCtrl', {
                 $scope: scope,
             });
         });
@@ -23,28 +23,29 @@ describe('homeCtrl', function() {
         });
     });
 
-    it('Saves a Property', function() {
+    it('saves a Property', function() {
         inject(function() {
             expect(scope.propertyAction).toEqual(jasmine.anything());
-
-            scope.propertyAction({action:'SAVE', id:2});
-            console.log(scope.savedProperties)
-            expect(scope.savedProperties.filter((p)=>{
+            scope.propertyAction({ action: 'SAVE', id: '1' });
+            expect(scope.properties.filter((p) => {
                 return p.id == '1'
             })).toEqual([]);
-            expect(scope.savedProperties['1']).toBeDefined();
-            
+            expect(scope.savedProperties.filter((p) => {
+                return p.id == '1'
+            }).length > 0).toBe(true);
         });
     });
 
-    it('unSaves a Property', function() {
+    it('removes a Property', function() {
         inject(function() {
             expect(scope.propertyAction).toEqual(jasmine.anything());
-            scope.propertyAction({action:'UN-SAVE', id:4});
-            expect(scope.savedProperties.filter((p)=>{
+            scope.propertyAction({ action: 'REMOVE', id: '4' });
+            expect(scope.savedProperties.filter((p) => {
                 return p.id == '4'
             })).toEqual([]);
-            expect(scope.properties['1']).toBeDefined();
+            expect(scope.properties.filter((p) => {
+                return p.id == '4'
+            }).length > 0).toBe(true);
         });
     });
 

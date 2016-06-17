@@ -19,7 +19,7 @@ angular.module('myApp').controller('HomeCtrl', function($scope, Api) {
         $scope[target].push(property);
         $scope[source] = _.filter($scope[source], (p) => {
             return p.id !== options.id;
-        })
+        });
     }
 
 });
